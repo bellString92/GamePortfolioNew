@@ -71,5 +71,10 @@ crashlytics-build.properties
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
 
-/[Aa]ssets\[Dd]ata\[Aa]ssetData/*/*.asset
-/[Aa]ssets\[Dd]ata\[Aa]ssetData/*/*.asset.meta
+#[Aa]ssets/[Dd]ata/[Aa]ssetData/*/*/*/*/*.asset
+#[Aa]ssets/[Dd]ata/[Aa]ssetData/*/*/*/*/*.asset.meta
+[Aa]ssets/[Dd]ata/[Aa]ssetData/**/*.asset
+[Aa]ssets/[Dd]ata/[Aa]ssetData/**/*.asset.meta
+
+Assets/Data/AssetData/Versatile Studio Assets/Demo City By Versatile Studio/Scenes/demo_city_night/LightingData.asset
+Assets/Data/AssetData/Versatile Studio Assets/Demo City By Versatile Studio/Scenes/demo_city_night/LightingData.asset.meta
