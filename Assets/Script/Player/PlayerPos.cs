@@ -21,14 +21,24 @@ public class PlayerPos : MonoBehaviour
 
     public Transform screenView;
     public GameObject shopObj;
+    public GameObject pricePopup;
+
     private void Awake()
     {
         PlayerPrefs.SetInt("playerPosition", (int)PlayerPosition.StoreNormal);
+
+        Stuff[] stuffs = Resources.LoadAll<Stuff>("Prefabs/Stuff");
+        foreach (Stuff stuff in stuffs)
+        {
+            stuff.myStuffDesc.price = stuff.myStuffDesc.cost;
+            Global.SetStuff(stuff.stuff, stuff);
+        }
     }
 
     // Start is called before the first frame update
     void Start()
     {
+        
         playerPosition = (PlayerPosition)PlayerPrefs.GetInt("playerPosition");
         if (playerPosition.Equals(PlayerPosition.Start))
         {
@@ -49,6 +59,7 @@ public class PlayerPos : MonoBehaviour
 
         shopObj.transform.localScale = new Vector3(0.01f, 0.01f, 0.01f);
         shopObj.SetActive(false);
+        pricePopup.SetActive(false);
 
         player = Instantiate(Resources.Load("Prefabs/Player")) as GameObject;
         player.transform.SetParent(null);
@@ -59,6 +70,7 @@ public class PlayerPos : MonoBehaviour
         player.GetComponent<Player>().playerCursor = playerCursor;
         player.GetComponent<Player>().screenView = screenView;
         player.GetComponent<Player>().shopObj = shopObj;
-        
+        player.GetComponent<Player>().pricePopup = pricePopup;
+
     }
 }

@@ -2,9 +2,10 @@ using System;
 using UnityEngine;
 
 [Serializable]
-public struct MenuDesc
+public struct StuffDesc
 {
     public int cost;
+    public int price;
     public string menuName;
     public string kind;
 }
@@ -20,5 +21,5 @@ public enum StuffObject
 public class Stuff : MonoBehaviour
 {
     public StuffObject stuff;
-    public MenuDesc myMenuDesc;
+    public StuffDesc myStuffDesc;
 }

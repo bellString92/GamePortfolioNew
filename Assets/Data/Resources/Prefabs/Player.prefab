@@ -182,15 +182,22 @@ MonoBehaviour:
   onDoorTrigger: 0
   playerCursor: {fileID: 0}
   onCursorTriggerChk: 0
+  slotChk: 0
+  onSlot: 0
   onBoxTrigger: 0
   onTableTrigger: 0
   actLayer:
     serializedVersion: 2
-    m_Bits: 64000
+    m_Bits: 260608
   dropObject: {fileID: 0}
   screenView: {fileID: 0}
   screenViewChk: 0
+  onScreenView: 0
   shopObj: {fileID: 0}
+  garbageChk: 0
+  onGarbage: 0
+  priceChk: 0
+  onPrice: 0
 --- !u!54 &6808843278057087280
 Rigidbody:
   m_ObjectHideFlags: 0

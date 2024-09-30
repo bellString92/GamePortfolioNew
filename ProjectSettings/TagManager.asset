@@ -10,6 +10,8 @@ TagManager:
   - Table
   - Base
   - Screen
+  - Garbage
+  - Price
   layers:
   - Default
   - TransparentFX
@@ -27,8 +29,8 @@ TagManager:
   - Table
   - Base
   - Screen
-  - 
-  - 
+  - Garbage
+  - Price
   - 
   - 
   - 

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
 
@@ -9,6 +10,8 @@ public class Slots : MonoBehaviour
     public Transform[] slotArr = null;
     public int count = 0;
     public bool countChk = true;
+    public GameObject priceObj;
+    public int price = 0;
 
     private void Start()
     {
@@ -21,9 +24,12 @@ public class Slots : MonoBehaviour
         }
     }
 
-    private void ChangeMyStuff(StuffObject stuffObject)
+    private void ChangeMyStuff(StuffObject stuffObject, int price)
     {
         myStuff = stuffObject;
+        this.price = price;
+        priceObj.GetComponentInChildren<TMPro.TMP_Text>().text = Global.Comma(price) + "원";
+        priceObj.SetActive(true);
     }
 
     private void ClearMyStuff()
@@ -51,7 +57,7 @@ public class Slots : MonoBehaviour
 
     public void AddStuff(Transform t)
     {
-        if (count == 0) ChangeMyStuff(t.GetComponent<Stuff>().stuff);
+        if (count == 0) ChangeMyStuff(t.GetComponent<Stuff>().stuff, Global.GetStuff(t.GetComponent<Stuff>().stuff).myStuffDesc.price);
         t.SetParent(slotArr[count++]);
         t.localScale = new Vector3(2, 40, 1);
         t.localPosition = Vector3.zero;
@@ -62,6 +68,29 @@ public class Slots : MonoBehaviour
 
     public void PutStuff(Transform t)
     {
-        
+        // 음식 집기
+    }
+
+    public void OnChangePrice(int price)
+    {
+        if (this.price != price)
+        {
+            Global.SetStuffPrice(myStuff, price);
+            foreach (GameObject s in GameObject.FindGameObjectsWithTag("Slot"))
+            {
+                if (s.GetComponent<Slots>().myStuff.Equals(myStuff))
+                {
+                    s.GetComponent<Slots>().price = price;
+                    foreach (Transform t in s.transform.GetChild(0).transform)
+                    {
+                        if (t.childCount > 0)
+                        {
+                            t.GetComponentInChildren<Stuff>().myStuffDesc.price = price;
+                        }
+                    }
+                    s.GetComponent<Slots>().GetComponentInChildren<TMPro.TMP_Text>().text = Global.Comma(price) + "원";
+                }
+            }
+        }
     }
 }

@@ -22,6 +22,7 @@ public class BuyPlace : MonoBehaviour
                 if (t.childCount >= 5) continue;
                 obj.transform.SetParent(t);
                 obj.transform.localPosition = new Vector3(0, t.childCount, 0);
+                obj.transform.localRotation = Quaternion.identity;
                 Debug.Log(t.childCount);
                 obj.GetComponent<Box>().OnCreateBox(so);
                 chk = true;

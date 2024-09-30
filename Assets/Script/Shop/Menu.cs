@@ -1,4 +1,5 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -10,27 +11,31 @@ public class Menu : MonoBehaviour
     public StuffObject stuffMenu = StuffObject.None;
     public TableObject tableMenu = TableObject.None;
     public GameObject placeObj;
+    public TMPro.TMP_Text price;
+    public int cost;
 
     private void Start()
     {
         string menuDesc = "";
         if (!stuffMenu.Equals(StuffObject.None))
         {
-            Stuff obj = Resources.Load<Stuff>($"Prefabs/Stuff/{stuffMenu}");
-            menuDesc += $"이름 : {obj.myMenuDesc.menuName}\n";
-            menuDesc += $"종류 : {obj.myMenuDesc.kind}\n";
-            menuDesc += $"단가 : {obj.myMenuDesc.cost}";
+            Stuff obj = Global.GetStuff(stuffMenu);
+            menuDesc += $"이름 : {obj.myStuffDesc.menuName}\n";
+            menuDesc += $"종류 : {obj.myStuffDesc.kind}\n";
+            menuDesc += $"수량 : 20개\n";
+            menuDesc += $"단가\n{Global.Comma(obj.myStuffDesc.cost)}원";
+            this.cost = obj.myStuffDesc.cost;
         }
         else if (!tableMenu.Equals(TableObject.None))
         {
             Table obj = Resources.Load<Table>($"Prefabs/{tableMenu}");
-            menuDesc += $"이름 : {obj.myMenuDesc.menuName}\n";
-            menuDesc += $"종류 : {obj.myMenuDesc.kind}\n";
-            menuDesc += $"단가 : {obj.myMenuDesc.cost}";
+            menuDesc += $"이름 : {obj.myStuffDesc.menuName}\n";
+            menuDesc += $"종류 : {obj.myStuffDesc.kind}\n";
+            menuDesc += $"단가\n{Global.Comma(obj.myStuffDesc.cost)}원";
+            this.cost = obj.myStuffDesc.cost;
         }
 
         desc.text = menuDesc;
-
     }
 
     public void OnCountPlus()
@@ -39,6 +44,7 @@ public class Menu : MonoBehaviour
         {
             if (cnt < maxCount) cnt++;
             count.text = cnt.ToString();
+            UpdatePrice(!stuffMenu.Equals(StuffObject.None));
         }
     }
 
@@ -48,6 +54,7 @@ public class Menu : MonoBehaviour
         {
             if (cnt > 0) cnt--;
             count.text = cnt.ToString();
+            UpdatePrice(!stuffMenu.Equals(StuffObject.None));
         }
     }
 
@@ -59,6 +66,7 @@ public class Menu : MonoBehaviour
             else if (cnt > maxCount) cnt = maxCount;
             count.text = cnt.ToString();
         }
+        UpdatePrice(!stuffMenu.Equals(StuffObject.None));
     }
 
     public void OnBuy()
@@ -87,10 +95,27 @@ public class Menu : MonoBehaviour
             {
                 buy.OnMenuBuyTable(tableMenu, cnt);
             }
-            
+
+            Global.Gold -= Global.UnComma(price.text.Substring(0, price.text.Length - 1));
+            Gold.Instance.OnChangeGold();
+
             msg = "구매가 완료되었습니다.";
+
+            count.text = "0";
+
             // 임시
             Debug.Log(msg);
+        }
+    }
+
+    void UpdatePrice(bool isStuff)
+    {
+        int amount = 1;
+        if (isStuff) amount = 20;
+        if (int.TryParse(count.text, out int cnt))
+        {
+            if (cnt <= 0) price.text = "0원";
+            else price.text = Global.Comma(cnt * cost * amount) + "원";
         }
     }
 }

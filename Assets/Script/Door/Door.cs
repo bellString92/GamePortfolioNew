@@ -21,7 +21,7 @@ public class Door : MonoBehaviour
     {
         if ((1 << other.gameObject.layer & targetMask) != 0)
         {
-            other.GetComponent<Player>().onDoorTriggerChk = other.GetComponent<Player>().onDoorTrigger = true;
+            other.GetComponent<Player>().doorTriggerChk = other.GetComponent<Player>().onDoorTrigger = true;
         }
     }
 
@@ -30,7 +30,7 @@ public class Door : MonoBehaviour
         if ((1 << other.gameObject.layer & targetMask) != 0)
         {
             other.GetComponent<Player>().onDoorTrigger = false;
-            other.GetComponent<Player>().onDoorTriggerChk = true;
+            other.GetComponent<Player>().doorTriggerChk = true;
         }
     }
 

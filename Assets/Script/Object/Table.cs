@@ -13,7 +13,7 @@ public class Table : MonoBehaviour
     private Camera _cam;
     public Transform _base;
     public TableObject tableObject = TableObject.None;
-    public MenuDesc myMenuDesc;
+    public StuffDesc myStuffDesc;
 
     public Camera myCam { get => _cam; set => _cam = value; }
     public Transform myBase { get => _base; set => _base = value; }
@@ -21,7 +21,13 @@ public class Table : MonoBehaviour
 
     private void Start()
     {
-        if (_base == null && transform.parent != null) _base = transform.parent;
+        if (_base == null && transform.parent != null)
+        {
+            if (transform.parent.tag.Equals("Base"))
+            {
+                _base = transform.parent;
+            }
+        }
     }
 
     public void OnDrop()
@@ -32,6 +38,10 @@ public class Table : MonoBehaviour
         {
             _base.parent.GetComponent<Base>().OnChangeMyBaseEmpty(_base.GetSiblingIndex());
             _base.parent.GetComponent<Base>().OnAllBaseView();
+        }
+        else
+        {
+            GameObject.FindGameObjectWithTag("Base").transform.parent.GetComponent<Base>().OnAllBaseView();
         }
     }
 

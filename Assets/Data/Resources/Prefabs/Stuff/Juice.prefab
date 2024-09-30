@@ -90,7 +90,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stuff: 12
-  myMenuDesc:
+  myStuffDesc:
     cost: 1000
+    price: 1000
     menuName: "\uC96C\uC2A4"
     kind: "\uB0C9\uC7A5"
