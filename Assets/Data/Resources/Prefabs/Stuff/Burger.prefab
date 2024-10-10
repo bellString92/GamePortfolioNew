@@ -64,6 +64,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b9e0dc1ab0567274ca3d07fa03c545f0, type: 3}
+      propertyPath: m_TagString
+      value: Stuff
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -71,6 +75,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: b9e0dc1ab0567274ca3d07fa03c545f0, type: 3}
       insertIndex: 1
       addedObject: {fileID: 5491237447531790055}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: b9e0dc1ab0567274ca3d07fa03c545f0, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8932727691413390380}
   m_SourcePrefab: {fileID: 100100000, guid: b9e0dc1ab0567274ca3d07fa03c545f0, type: 3}
 --- !u!1 &2256796885095698447 stripped
 GameObject:
@@ -92,6 +99,29 @@ MonoBehaviour:
   stuff: 1
   myStuffDesc:
     cost: 2000
-    price: 4000
+    price: 2000
     menuName: "\uD584\uBC84\uAC70"
     kind: "\uC0C1\uC628"
+--- !u!136 &8932727691413390380
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2256796885095698447}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Radius: 0.07
+  m_Height: 0.1
+  m_Direction: 1
+  m_Center: {x: -0.000568375, y: 0.040330183, z: 0.0009471476}

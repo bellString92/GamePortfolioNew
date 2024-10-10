@@ -22,6 +22,8 @@ public class PlayerPos : MonoBehaviour
     public Transform screenView;
     public GameObject shopObj;
     public GameObject pricePopup;
+    public OpenStore openStore;
+    public Cashier cashier;
 
     private void Awake()
     {
@@ -71,6 +73,7 @@ public class PlayerPos : MonoBehaviour
         player.GetComponent<Player>().screenView = screenView;
         player.GetComponent<Player>().shopObj = shopObj;
         player.GetComponent<Player>().pricePopup = pricePopup;
-
+        player.GetComponent<Player>().openStore = openStore;
+        player.GetComponent<Player>().cashier = cashier;
     }
 }

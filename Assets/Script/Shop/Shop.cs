@@ -5,7 +5,7 @@ using UnityEngine.Events;
 
 public enum Page
 {
-    HomePage, BuyPage, BankPage
+    HomePage, BuyPage, BankPage, HirePage
 }
 
 public class Shop : MonoBehaviour
@@ -13,6 +13,7 @@ public class Shop : MonoBehaviour
     public GameObject homePage;
     public GameObject buyPage;
     public GameObject bankPage;
+    public GameObject hirePage;
 
     // Start is called before the first frame update
     void Start()
@@ -28,13 +29,21 @@ public class Shop : MonoBehaviour
                 homePage.SetActive(true);
                 buyPage.SetActive(false);
                 bankPage.SetActive(false);
+                hirePage.SetActive(false);
                 break;
             case Page.BuyPage:
                 buyPage.SetActive(true);
                 homePage.SetActive(false);
+                hirePage.SetActive(false);
                 break;
             case Page.BankPage:
                 bankPage.SetActive(true);
+                homePage.SetActive(false);
+                hirePage.SetActive(false);
+                break;
+            case Page.HirePage:
+                hirePage.SetActive(true);
+                bankPage.SetActive(false);
                 homePage.SetActive(false);
                 break;
         }

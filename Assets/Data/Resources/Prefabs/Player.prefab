@@ -178,17 +178,17 @@ MonoBehaviour:
   moveSpeed: 5
   mouseSensitivity: 200
   actionKey: {fileID: 0}
-  onDoorTriggerChk: 0
+  doorTriggerChk: 0
   onDoorTrigger: 0
   playerCursor: {fileID: 0}
-  onCursorTriggerChk: 0
+  cursorChk: 0
   slotChk: 0
   onSlot: 0
-  onBoxTrigger: 0
-  onTableTrigger: 0
+  onBox: 0
+  onTable: 0
   actLayer:
     serializedVersion: 2
-    m_Bits: 260608
+    m_Bits: 1048064
   dropObject: {fileID: 0}
   screenView: {fileID: 0}
   screenViewChk: 0
@@ -196,8 +196,18 @@ MonoBehaviour:
   shopObj: {fileID: 0}
   garbageChk: 0
   onGarbage: 0
+  pricePopup: {fileID: 0}
   priceChk: 0
   onPrice: 0
+  price: 0
+  stuff: 0
+  slots: {fileID: 0}
+  openChk: 0
+  openStore: {fileID: 0}
+  stuffChk: 0
+  sellStuff: {fileID: 0}
+  sellPrice: 0
+  cashier: {fileID: 0}
 --- !u!54 &6808843278057087280
 Rigidbody:
   m_ObjectHideFlags: 0

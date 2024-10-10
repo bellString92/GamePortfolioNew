@@ -8,6 +8,7 @@ public class Slots : MonoBehaviour
 {
     public StuffObject myStuff;
     public Transform[] slotArr = null;
+    public int maxCount = 10;
     public int count = 0;
     public bool countChk = true;
     public GameObject priceObj;
@@ -16,7 +17,7 @@ public class Slots : MonoBehaviour
     private void Start()
     {
         myStuff = StuffObject.None;
-        slotArr = new Transform[10];
+        slotArr = new Transform[maxCount];
         int i = 0;
         foreach (Transform t in transform.GetChild(0))
         {
@@ -35,6 +36,8 @@ public class Slots : MonoBehaviour
     private void ClearMyStuff()
     {
         myStuff = StuffObject.None;
+        this.price = 0;
+        priceObj.SetActive(false);
     }
 
     public bool OnDisplayCheck(StuffObject stuff)
@@ -55,20 +58,25 @@ public class Slots : MonoBehaviour
         return chk;
     }
 
-    public void AddStuff(Transform t)
+    public bool AddStuff(Transform t)
     {
         if (count == 0) ChangeMyStuff(t.GetComponent<Stuff>().stuff, Global.GetStuff(t.GetComponent<Stuff>().stuff).myStuffDesc.price);
-        t.SetParent(slotArr[count++]);
-        t.localScale = new Vector3(2, 40, 1);
-        t.localPosition = Vector3.zero;
-        t.localRotation = Quaternion.identity;
-        t.gameObject.SetActive(true);
-        if (count >= 10) countChk = false;
-    }
-
-    public void PutStuff(Transform t)
-    {
-        // 음식 집기
+        bool chk = false;
+        for (int i = 0; i < slotArr.Length; i++)
+        {
+            if (slotArr[i].childCount == 0)
+            {
+                t.SetParent(slotArr[i]);
+                t.localScale = new Vector3(2, 40, 1);
+                t.localPosition = Vector3.zero;
+                t.localRotation = Quaternion.identity;
+                t.gameObject.SetActive(true);
+                if (++count >= maxCount) countChk = false;
+                chk = true;
+                break;
+            }
+        }
+        return chk;
     }
 
     public void OnChangePrice(int price)
@@ -92,5 +100,27 @@ public class Slots : MonoBehaviour
                 }
             }
         }
+    }
+
+    public Transform PutStuff(bool take)
+    {
+        if (count <= 0) return null;
+
+        for (int i = 0; i < slotArr.Length; i++)
+        {
+            if (slotArr[i].childCount > 0)
+            {
+                Transform stuff = slotArr[i];
+                if (take)
+                {
+                    count--;
+                    countChk = true;
+                    if (count == 0) ClearMyStuff();
+                }
+                return stuff;
+            }
+        }
+
+        return null;
     }
 }

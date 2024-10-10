@@ -11,6 +11,8 @@ public class Gold : MonoBehaviour
 
     public static Gold Instance = null;
 
+    private TMPro.TMP_Text goldText;
+
     private void Awake()
     {
         Instance = this;
@@ -19,6 +21,7 @@ public class Gold : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        goldText = transform.GetComponent<TMPro.TMP_Text>();
         OnChangeGold();
     }
 
@@ -34,29 +37,39 @@ public class Gold : MonoBehaviour
 
     public void OnChangeGold()
     {
-        if (cor == null)
+        if (cor != null)
         {
-            cor = StartCoroutine(ChangingGold());
+            StopCoroutine(cor);
         }
+        cor = StartCoroutine(ChangingGold());
     }
 
-    IEnumerator ChangingGold()
+    IEnumerator ChangingGold(int changeGold = 1000000)
     {
-        int oriGold = Global.UnComma(transform.GetComponent<TMPro.TMP_Text>().text);
-        
-        while (oriGold < Global.Gold - 1000)
+        int oriGold = Global.UnComma(goldText.text);
+
+
+        while (oriGold < Global.Gold - 1)
         {
-            transform.GetComponent<TMPro.TMP_Text>().text = Global.Comma(oriGold += 1000);
-            yield return null;
+            while (changeGold > 1 && oriGold + changeGold >= Global.Gold)
+            {
+                changeGold /= 10;
+            }
+            goldText.text = Global.Comma(oriGold += changeGold);
+            yield return new WaitForSeconds(0.02f);
         }
 
-        while (oriGold > Global.Gold + 1000)
+        while (oriGold > Global.Gold + 1)
         {
-            transform.GetComponent<TMPro.TMP_Text>().text = Global.Comma(oriGold -= 1000);
-            yield return null;
+            while (changeGold > 1 && oriGold - changeGold <= Global.Gold)
+            {
+                changeGold /= 10;
+            }
+            goldText.text = Global.Comma(oriGold -= changeGold);
+            yield return new WaitForSeconds(0.02f);
         }
 
-        transform.GetComponent<TMPro.TMP_Text>().text = Global.GoldStr;
+        goldText.text = Global.Comma(Global.Gold);
 
         cor = null;
     }

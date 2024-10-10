@@ -12,6 +12,9 @@ TagManager:
   - Screen
   - Garbage
   - Price
+  - Open
+  - Stuff
+  - Sell
   layers:
   - Default
   - TransparentFX
@@ -31,8 +34,8 @@ TagManager:
   - Screen
   - Garbage
   - Price
-  - 
-  - 
+  - Open
+  - Sell
   - 
   - 
   - 
