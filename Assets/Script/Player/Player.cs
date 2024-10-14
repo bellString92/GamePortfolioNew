@@ -5,6 +5,7 @@ using System.Security.Cryptography.X509Certificates;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 using static UnityEngine.UI.Image;
 
 enum TriggerDoor
@@ -64,6 +65,12 @@ public class Player : AnimatorProperty
     public Cashier cashier;
 
     public bool sellChk = false;
+
+    public bool bedChk = false;
+    public Transform endDayObj = null;
+
+    public Transform bedCam = null;
+    public bool onBed { get; set; } = false;
 
     // Start is called before the first frame update
     void Start()
@@ -138,7 +145,12 @@ public class Player : AnimatorProperty
         Debug.DrawRay(ray.origin, ray.direction * 2.0f, Color.red);
         if (Physics.Raycast(ray, out RaycastHit hit, 2.0f, actLayer))
         {
-            cursorChk = true;
+            if (hit.collider.tag.Equals("Bed"))
+            {
+                if (onBed) cursorChk = true;
+            }
+            else cursorChk = true;
+
             switch (hit.collider.tag)
             {
                 case "Box":
@@ -197,6 +209,9 @@ public class Player : AnimatorProperty
                 case "Sell":
                     sellChk = true;
                     break;
+                case "Bed":
+                    bedChk = true;
+                    break;
             }
         }
         else
@@ -216,6 +231,7 @@ public class Player : AnimatorProperty
             if (!stuffChk) sellStuff = null;
             openChk = false;
             sellChk = false;
+            bedChk = false;
         }
 
         playerCursor.transform.GetChild(0).gameObject.SetActive(!cursorChk);
@@ -271,6 +287,7 @@ public class Player : AnimatorProperty
                         if (cursorChk)
                         {
                             dropObject.GetComponent<Box>().OnDrop();
+                            dropObject.GetComponent<Collider>().enabled = false;
                             onBox = true;
                             foreach (GameObject obj in GameObject.FindGameObjectsWithTag("Table"))
                             {
@@ -296,6 +313,7 @@ public class Player : AnimatorProperty
                         if (!cursorChk || cursorChk && (garbageChk || !slotChk))
                         {
                             if (!garbageChk) dropObject.GetComponent<Box>().OnPut();
+                            dropObject.GetComponent<Collider>().enabled = true;
                             onBox = false;
                             foreach (GameObject obj in GameObject.FindGameObjectsWithTag("Table"))
                             {
@@ -332,6 +350,23 @@ public class Player : AnimatorProperty
             else if (sellChk)
             {
                 cashier.SellStuffs();
+            }
+            else if (bedChk && onBed)
+            {
+                myAnim.SetBool("OnStop", true);
+                myCam.transform.SetParent(bedCam);
+                myCam.transform.localPosition = Vector3.zero;
+                myCam.transform.localRotation = Quaternion.identity;
+
+                myAnim.applyRootMotion = true;
+                transform.rotation = Quaternion.LookRotation(-transform.forward);
+
+                playerCursor.transform.GetChild(0).gameObject.SetActive(false);
+                playerCursor.transform.GetChild(1).gameObject.SetActive(false);
+
+                myAnim.SetBool("IsSit", true);
+                myAnim.SetTrigger("OnSit");
+
             }
         }
     }
@@ -398,4 +433,81 @@ public class Player : AnimatorProperty
         slots.OnChangePrice(price);
     }
 
+    public void EndDay()
+    {
+        StartCoroutine(EndDayCor());
+    }
+
+    IEnumerator EndDayCor()
+    {
+        float alpha = 0.0f;
+        endDayObj.GetChild(0).gameObject.SetActive(true);
+        
+        Color color = endDayObj.GetChild(0).GetComponent<Image>().color;
+
+        while (alpha < 1.0f)
+        {
+            alpha += Time.deltaTime * 0.5f;
+            color.a = alpha;
+            endDayObj.GetChild(0).GetComponent<Image>().color = color;
+            yield return null;
+        }
+
+        color.a = 1.0f;
+        endDayObj.GetChild(0).GetComponent<Image>().color = color;
+
+        ShowInformation();
+    }
+
+    void ShowInformation()
+    {
+        
+
+
+
+        Global.ResetDay(this);
+    }
+
+    public void HideInformation()
+    {
+        StartCoroutine(StartDayCor());
+    }
+
+    IEnumerator StartDayCor()
+    {
+        float alpha = 1.0f;
+
+        Color color = endDayObj.GetChild(0).GetComponent<Image>().color;
+
+        while (alpha > 0.0f)
+        {
+            alpha -= Time.deltaTime * 0.5f;
+            color.a = alpha;
+            endDayObj.GetChild(0).GetComponent<Image>().color = color;
+            yield return null;
+        }
+
+        color.a = 0.0f;
+        endDayObj.GetChild(0).GetComponent<Image>().color = color;
+        endDayObj.GetChild(0).gameObject.SetActive(false);
+
+        StartDay();
+    }
+
+    void StartDay()
+    {
+        myAnim.SetBool("IsSit", false);
+    }
+
+    public void MovePlayer()
+    {
+        playerCursor.transform.GetChild(0).gameObject.SetActive(true);
+        playerCursor.transform.GetChild(1).gameObject.SetActive(false);
+
+        myCam.transform.SetParent(transform);
+        myAnim.applyRootMotion = false;
+        myCam.transform.localPosition = myCam2.transform.localPosition;
+        myCam.transform.localRotation = myCam2.transform.rotation;
+        myAnim.SetBool("OnStop", false);
+    }
 }

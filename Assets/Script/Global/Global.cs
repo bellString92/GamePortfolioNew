@@ -1,11 +1,39 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using System.Threading;
+
+public class Statistics
+{
+    public int guest = 0; // 입장 게스트 수
+    public int buyGuest = 0; // 판매 게스트 수
+
+    public int saleGold = 0; // 매출
+    public int profitGold = 0; // 이익
+    public int interestGold = 0; // 이자
+}
 
 public class Global
 {
     private static int _gold = 0;
     private static Dictionary<StuffObject, Stuff> _stuff = new Dictionary<StuffObject, Stuff>();
+    public static Statistics statistics = new Statistics();
+
+    public static void ResetDay(Player player)
+    {
+        statistics.guest = 0;
+        statistics.buyGuest = 0;
+        statistics.saleGold = 0;
+        statistics.profitGold = 0;
+        statistics.interestGold = 0;
+
+        // 통계작업
+        Thread.Sleep(5000); // 임시
+
+        // 통계작업 끝
+        player.HideInformation();
+    }
 
     public static int Gold
     {

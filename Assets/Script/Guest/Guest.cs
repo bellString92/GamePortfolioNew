@@ -184,7 +184,8 @@ public class Guest : AnimatorProperty
                 break;
             case GuestCurrentState.Destroy:
                 GuestController.Instance.OnDestroyGuest(gameObject);
-                Destroy(gameObject);
+                ObjectPool.Instance.Release<GuestCharacter>(gameObject);
+                ResetGuest();
                 break;
         }
     }
@@ -274,7 +275,7 @@ public class Guest : AnimatorProperty
         StuffObject[] stuffs = new[]
         {
             StuffObject.Burger, StuffObject.Donut, StuffObject.Snack, StuffObject.Coke, StuffObject.Juice, StuffObject.Yogurt
-        }.OrderBy(x => Random.Range(0, 100)).Take(Random.Range(0, 100) % 3 + 1).ToArray();
+        }.OrderBy(x => Random.value).Take(Random.Range(1, 4)).ToArray();
 
         foreach (StuffObject s in stuffs)
         {
@@ -332,4 +333,19 @@ public class Guest : AnimatorProperty
         }
     }
 
+    private void ResetGuest()
+    {
+        purposeObj = null;
+        purpose = null;
+        myPurposeLineUp = null;
+        isLookRot = false;
+        isMovePos = false;
+        isPurposeRot = false;
+        onceChk = false;
+        putStuffSlot = null;
+        putStuff = null;
+        myBasket = null;
+        hopeStuff.Clear();
+        takeStuff.Clear();
+    }
 }

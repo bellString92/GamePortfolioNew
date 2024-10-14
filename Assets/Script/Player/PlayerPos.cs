@@ -25,6 +25,8 @@ public class PlayerPos : MonoBehaviour
     public OpenStore openStore;
     public Cashier cashier;
 
+    public Transform endDayObj;
+
     private void Awake()
     {
         PlayerPrefs.SetInt("playerPosition", (int)PlayerPosition.StoreNormal);
@@ -68,12 +70,14 @@ public class PlayerPos : MonoBehaviour
         player.name = "Player";
         player.transform.localPosition = playerPos;
         player.transform.localRotation = playerRot;
-        player.GetComponent<Player>().actionKey = actionKey;
-        player.GetComponent<Player>().playerCursor = playerCursor;
-        player.GetComponent<Player>().screenView = screenView;
-        player.GetComponent<Player>().shopObj = shopObj;
-        player.GetComponent<Player>().pricePopup = pricePopup;
-        player.GetComponent<Player>().openStore = openStore;
-        player.GetComponent<Player>().cashier = cashier;
+        Player playerComp = player.GetComponent<Player>();
+        playerComp.actionKey = actionKey;
+        playerComp.playerCursor = playerCursor;
+        playerComp.screenView = screenView;
+        playerComp.shopObj = shopObj;
+        playerComp.pricePopup = pricePopup;
+        playerComp.openStore = openStore;
+        playerComp.cashier = cashier;
+        playerComp.endDayObj = endDayObj;
     }
 }

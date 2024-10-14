@@ -49,15 +49,12 @@ public class GuestController : Singleton<GuestController>
                 if (guestArr[i] == null)
                 {
                     GuestCharacter guest = (GuestCharacter)Random.Range(0, System.Enum.GetValues(typeof(GuestCharacter)).Length);
-                    guestArr[i] = Instantiate(Resources.Load($"Prefabs/Guest/{guest}") as GameObject);
-                    guestArr[i].name = guest.ToString();
-                    guestArr[i].transform.SetParent(joinPoint);
-                    guestArr[i].transform.localPosition = Vector3.zero;
-                    guestArr[i].transform.localRotation = Quaternion.identity;
-                    guestArr[i].GetComponent<Guest>().purposeObj = purposeObj;
-                    guestArr[i].GetComponent<Guest>().purpose = purposeObj.GetComponent<PurposePos>().doorObj;
-                    guestArr[i].GetComponent<Guest>().ChangeMyActState(GuestActState.Walk);
-                    guestArr[i].GetComponent<Guest>().ChangeMyCurrentState(GuestCurrentState.Start);
+                    guestArr[i] = ObjectPool.Instance.Instantiate<GuestCharacter>(Resources.Load($"Prefabs/Guest/{guest}") as GameObject, joinPoint);
+                    Guest guestComp = guestArr[i].GetComponent<Guest>();
+                    guestComp.purposeObj = purposeObj;
+                    guestComp.purpose = purposeObj.GetComponent<PurposePos>().doorObj;
+                    guestComp.ChangeMyActState(GuestActState.Walk);
+                    guestComp.ChangeMyCurrentState(GuestCurrentState.Start);
                     count++;
                     chk = true;
                     break;
@@ -67,6 +64,7 @@ public class GuestController : Singleton<GuestController>
             if (!isFull && chk) waitCor = StartCoroutine(CreateWait());
         }
     }
+
 
     private IEnumerator CreateWait()
     {
