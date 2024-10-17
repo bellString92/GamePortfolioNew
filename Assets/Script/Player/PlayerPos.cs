@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-enum PlayerPosition
+public enum PlayerPosition
 {
     Start, CityNormal, StoreNormal, OtherNormal
 }
@@ -14,7 +14,7 @@ public class PlayerPos : MonoBehaviour
     private Vector3 playerPos = Vector3.zero;
     private Quaternion playerRot = Quaternion.identity;
     private GameObject player;
-    private PlayerPosition playerPosition = PlayerPosition.Start;
+    public PlayerPosition playerPosition = PlayerPosition.Start;
 
     [SerializeField] private GameObject actionKey;
     [SerializeField] private GameObject playerCursor;
@@ -24,8 +24,8 @@ public class PlayerPos : MonoBehaviour
     public GameObject pricePopup;
     public OpenStore openStore;
     public Cashier cashier;
-
     public Transform endDayObj;
+    public Information infoObj;
 
     private void Awake()
     {
@@ -61,9 +61,7 @@ public class PlayerPos : MonoBehaviour
             playerRot = Quaternion.identity;
         }
 
-        shopObj.transform.localScale = new Vector3(0.01f, 0.01f, 0.01f);
-        shopObj.SetActive(false);
-        pricePopup.SetActive(false);
+        
 
         player = Instantiate(Resources.Load("Prefabs/Player")) as GameObject;
         player.transform.SetParent(null);
@@ -73,11 +71,20 @@ public class PlayerPos : MonoBehaviour
         Player playerComp = player.GetComponent<Player>();
         playerComp.actionKey = actionKey;
         playerComp.playerCursor = playerCursor;
-        playerComp.screenView = screenView;
-        playerComp.shopObj = shopObj;
-        playerComp.pricePopup = pricePopup;
-        playerComp.openStore = openStore;
-        playerComp.cashier = cashier;
-        playerComp.endDayObj = endDayObj;
+
+        if (playerPosition.Equals(PlayerPosition.StoreNormal))
+        {
+            shopObj.transform.localScale = new Vector3(0.01f, 0.01f, 0.01f);
+            shopObj.SetActive(false);
+            pricePopup.SetActive(false);
+
+            playerComp.screenView = screenView;
+            playerComp.shopObj = shopObj;
+            playerComp.pricePopup = pricePopup;
+            playerComp.openStore = openStore;
+            playerComp.cashier = cashier;
+            playerComp.endDayObj = endDayObj;
+            playerComp.infoObj = infoObj;
+        }
     }
 }

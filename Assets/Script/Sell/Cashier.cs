@@ -10,6 +10,8 @@ public class Cashier : MonoBehaviour
     public Transform sellBtn;
     public CashierGuest cashierGuest;
     public List<StuffObject> menus = new List<StuffObject>();
+    private int profitGold = 0;
+    int num = 1;
 
     public void AddStuff(Stuff stuff)
     {
@@ -47,12 +49,18 @@ public class Cashier : MonoBehaviour
             sellBtn.GetChild(1).gameObject.SetActive(true);
         }
 
+        profitGold += stuff.myStuffDesc.price - stuff.myStuffDesc.cost;
+
         Destroy(stuff.gameObject);
     }
 
     public void SellStuffs()
     {
-        Global.Gold += Global.UnComma(price.text[..^1]);
+        int priceGold = Global.UnComma(price.text[..^1]);
+        Global.Gold += priceGold;
+        Global.statistics.saleGold += priceGold;
+        Global.statistics.profitGold += profitGold;
+        profitGold = 0;
         Gold.Instance.OnChangeGold();
         for (int i = 0; i < 4; i++)
         {

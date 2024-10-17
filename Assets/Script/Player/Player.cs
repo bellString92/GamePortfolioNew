@@ -71,6 +71,7 @@ public class Player : AnimatorProperty
 
     public Transform bedCam = null;
     public bool onBed { get; set; } = false;
+    public Information infoObj;
 
     // Start is called before the first frame update
     void Start()
@@ -78,6 +79,8 @@ public class Player : AnimatorProperty
         Cursor.lockState = CursorLockMode.Locked;
         myCam = transform.GetComponentsInChildren<Camera>()[0];
         myCam2 = transform.GetComponentsInChildren<Camera>()[1];
+
+        Clock.Instance.StartClock();
         //Global.Gold = 1000000;
     }
 
@@ -364,6 +367,8 @@ public class Player : AnimatorProperty
                 playerCursor.transform.GetChild(0).gameObject.SetActive(false);
                 playerCursor.transform.GetChild(1).gameObject.SetActive(false);
 
+                Clock.Instance.StopClock();
+
                 myAnim.SetBool("IsSit", true);
                 myAnim.SetTrigger("OnSit");
 
@@ -461,10 +466,14 @@ public class Player : AnimatorProperty
 
     void ShowInformation()
     {
-        
+        infoObj.player = this;
+        Cursor.lockState = CursorLockMode.None;
+        infoObj.StartInformation();
+    }
 
-
-
+    public void ResetDay()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
         Global.ResetDay(this);
     }
 
@@ -509,5 +518,7 @@ public class Player : AnimatorProperty
         myCam.transform.localPosition = myCam2.transform.localPosition;
         myCam.transform.localRotation = myCam2.transform.rotation;
         myAnim.SetBool("OnStop", false);
+
+        Clock.Instance.StartClock();
     }
 }

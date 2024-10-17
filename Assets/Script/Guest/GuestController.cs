@@ -56,6 +56,7 @@ public class GuestController : Singleton<GuestController>
                     guestComp.ChangeMyActState(GuestActState.Walk);
                     guestComp.ChangeMyCurrentState(GuestCurrentState.Start);
                     count++;
+                    Global.statistics.guest++;
                     chk = true;
                     break;
                 }
@@ -201,6 +202,7 @@ public class GuestController : Singleton<GuestController>
                     }
 
                     guest.myPurposeLineUp = null;
+                    Global.statistics.buyGuest++;
                     guest.ChangeMyCurrentState(GuestCurrentState.End);
                     return pp.doorObj;
                 }
@@ -218,7 +220,7 @@ public class GuestController : Singleton<GuestController>
                 guestArr[i] = null;
                 count--;
                 isFull = false;
-                CreateGuest();
+                // CreateGuest(); 왜 Destroy인데 게스트를 생성했지?????
             }
         }
     }
@@ -247,7 +249,7 @@ public class GuestController : Singleton<GuestController>
 
         for (int i = 0; i < guestArr.Length; i++)
         {
-            guestArr[i].GetComponent<Guest>().ChkMyPurposeLineUp(bg.transform);
+            guestArr[i].GetComponent<Guest>()?.ChkMyPurposeLineUp(bg.transform);
         }
     }
 

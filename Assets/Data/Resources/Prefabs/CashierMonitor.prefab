@@ -184,7 +184,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 3
+  m_text: 0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 85e774a12cbb4b6439ba593f363afe29, type: 2}
   m_sharedMaterial: {fileID: 7077599137306107714, guid: 85e774a12cbb4b6439ba593f363afe29, type: 2}
@@ -355,7 +355,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 3,000
+  m_text: 0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 85e774a12cbb4b6439ba593f363afe29, type: 2}
   m_sharedMaterial: {fileID: 7077599137306107714, guid: 85e774a12cbb4b6439ba593f363afe29, type: 2}
@@ -1021,7 +1021,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 2
+  m_text: 0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 85e774a12cbb4b6439ba593f363afe29, type: 2}
   m_sharedMaterial: {fileID: 7077599137306107714, guid: 85e774a12cbb4b6439ba593f363afe29, type: 2}
@@ -1192,7 +1192,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uCF5C\uB77C"
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 85e774a12cbb4b6439ba593f363afe29, type: 2}
   m_sharedMaterial: {fileID: 7077599137306107714, guid: 85e774a12cbb4b6439ba593f363afe29, type: 2}
@@ -1363,7 +1363,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 1,000
+  m_text: 0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 85e774a12cbb4b6439ba593f363afe29, type: 2}
   m_sharedMaterial: {fileID: 7077599137306107714, guid: 85e774a12cbb4b6439ba593f363afe29, type: 2}
@@ -1960,7 +1960,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 1
+  m_text: 0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 85e774a12cbb4b6439ba593f363afe29, type: 2}
   m_sharedMaterial: {fileID: 7077599137306107714, guid: 85e774a12cbb4b6439ba593f363afe29, type: 2}
@@ -2042,13 +2042,14 @@ GameObject:
   m_Component:
   - component: {fileID: 7643531833085766953}
   - component: {fileID: 8227082125510031945}
-  m_Layer: 0
+  - component: {fileID: 7818457297036588839}
+  m_Layer: 19
   m_Name: Active
-  m_TagString: Untagged
+  m_TagString: Sell
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7643531833085766953
 Transform:
   m_ObjectHideFlags: 0
@@ -2116,6 +2117,27 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!65 &7818457297036588839
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2996275001183243466}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.64, y: 0.6399999, z: 0.01}
+  m_Center: {x: 0.00000023841858, y: 0, z: -0.0000019073486}
 --- !u!1 &3567106808937515455
 GameObject:
   m_ObjectHideFlags: 0
@@ -2487,7 +2509,7 @@ GameObject:
   - component: {fileID: 856812291303268065}
   - component: {fileID: 8896895900769903505}
   m_Layer: 0
-  m_Name: Sale
+  m_Name: Sell
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2919,7 +2941,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 2,000
+  m_text: 0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 85e774a12cbb4b6439ba593f363afe29, type: 2}
   m_sharedMaterial: {fileID: 7077599137306107714, guid: 85e774a12cbb4b6439ba593f363afe29, type: 2}
@@ -3090,7 +3112,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uD584\uBC84\uAC70"
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 85e774a12cbb4b6439ba593f363afe29, type: 2}
   m_sharedMaterial: {fileID: 7077599137306107714, guid: 85e774a12cbb4b6439ba593f363afe29, type: 2}
@@ -3295,7 +3317,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 1,000
+  m_text: 0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 85e774a12cbb4b6439ba593f363afe29, type: 2}
   m_sharedMaterial: {fileID: 7077599137306107714, guid: 85e774a12cbb4b6439ba593f363afe29, type: 2}
@@ -3499,7 +3521,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 1,000
+  m_text: 0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 85e774a12cbb4b6439ba593f363afe29, type: 2}
   m_sharedMaterial: {fileID: 7077599137306107714, guid: 85e774a12cbb4b6439ba593f363afe29, type: 2}
@@ -3907,8 +3929,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   creditCard: {fileID: 0}
-  menuObj: {fileID: 0}
-  textMeshPro: {fileID: 0}
+  menuObj: {fileID: 8295000093197417832}
+  count: {fileID: 2052952212963605904}
+  price: {fileID: 1906596372106568359}
+  sellBtn: {fileID: 587972957927005455}
+  cashierGuest: {fileID: 0}
   menus: 
 --- !u!1 &7078968465276800773
 GameObject:
@@ -4389,7 +4414,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uB3C4\uB11B"
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 85e774a12cbb4b6439ba593f363afe29, type: 2}
   m_sharedMaterial: {fileID: 7077599137306107714, guid: 85e774a12cbb4b6439ba593f363afe29, type: 2}
@@ -4644,7 +4669,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 1,000
+  m_text: 0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 85e774a12cbb4b6439ba593f363afe29, type: 2}
   m_sharedMaterial: {fileID: 7077599137306107714, guid: 85e774a12cbb4b6439ba593f363afe29, type: 2}

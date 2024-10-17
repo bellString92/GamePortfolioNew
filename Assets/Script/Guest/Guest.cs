@@ -38,8 +38,15 @@ public class Guest : AnimatorProperty
     private Slots putStuffSlot = null;
     private Transform putStuff = null;
 
-    public Transform myBasket = null;
+    public Transform myBasket;
 
+    private void Start()
+    {
+        if (myBasket == null)
+        {
+            myBasket = transform.GetChild(transform.childCount - 1);
+        }
+    }
 
     public void ChangeMyActState(GuestActState state)
     {
@@ -344,7 +351,6 @@ public class Guest : AnimatorProperty
         onceChk = false;
         putStuffSlot = null;
         putStuff = null;
-        myBasket = null;
         hopeStuff.Clear();
         takeStuff.Clear();
     }

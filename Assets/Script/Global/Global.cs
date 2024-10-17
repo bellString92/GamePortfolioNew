@@ -10,8 +10,9 @@ public class Statistics
     public int buyGuest = 0; // 판매 게스트 수
 
     public int saleGold = 0; // 매출
-    public int profitGold = 0; // 이익
-    public int interestGold = 0; // 이자
+    public int profitGold = 0; // 순이익
+
+    public int unpaid = 0; // 미납 횟수
 }
 
 public class Global
@@ -26,12 +27,7 @@ public class Global
         statistics.buyGuest = 0;
         statistics.saleGold = 0;
         statistics.profitGold = 0;
-        statistics.interestGold = 0;
 
-        // 통계작업
-        Thread.Sleep(5000); // 임시
-
-        // 통계작업 끝
         player.HideInformation();
     }
 
