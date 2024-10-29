@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
+using static UnityEngine.ParticleSystem;
 
 public enum GuestCharacter
 {
@@ -30,7 +31,19 @@ public class GuestController : Singleton<GuestController>
     private void Start()
     {
         guestArr = new GameObject[maxCount];
-        
+        for (int i = 0; i < guestArr.Length; i++)
+        {
+            GuestCharacter guest = (GuestCharacter)Random.Range(0, System.Enum.GetValues(typeof(GuestCharacter)).Length);
+            guestArr[i] = ObjectPool.Instance.Instantiate<GuestCharacter>(Resources.Load($"Prefabs/Guest/{guest}") as GameObject, ObjectPool.Instance.transform);
+            guestArr[i].name = guest.ToString();
+            guestArr[i].SetActive(false);
+            
+        }
+        for (int i = 0; i < guestArr.Length; i++)
+        {
+            ObjectPool.Instance.Release<GuestCharacter>(guestArr[i]);
+            guestArr[i] = null;
+        }
     }
 
     public void OnCreateGuest()
@@ -51,6 +64,7 @@ public class GuestController : Singleton<GuestController>
                     GuestCharacter guest = (GuestCharacter)Random.Range(0, System.Enum.GetValues(typeof(GuestCharacter)).Length);
                     guestArr[i] = ObjectPool.Instance.Instantiate<GuestCharacter>(Resources.Load($"Prefabs/Guest/{guest}") as GameObject, joinPoint);
                     Guest guestComp = guestArr[i].GetComponent<Guest>();
+                    guestArr[i].name = guest.ToString();
                     guestComp.purposeObj = purposeObj;
                     guestComp.purpose = purposeObj.GetComponent<PurposePos>().doorObj;
                     guestComp.ChangeMyActState(GuestActState.Walk);
@@ -220,7 +234,8 @@ public class GuestController : Singleton<GuestController>
                 guestArr[i] = null;
                 count--;
                 isFull = false;
-                // CreateGuest(); 왜 Destroy인데 게스트를 생성했지?????
+                //CreateGuest(); // 왜 Destroy인데 게스트를 생성했지???? 
+                if (waitCor == null) waitCor = StartCoroutine(CreateWait());
             }
         }
     }
@@ -249,7 +264,8 @@ public class GuestController : Singleton<GuestController>
 
         for (int i = 0; i < guestArr.Length; i++)
         {
-            guestArr[i].GetComponent<Guest>()?.ChkMyPurposeLineUp(bg.transform);
+            if (guestArr[i] != null && guestArr[i].GetComponent<Guest>() != null && guestArr[i].GetComponent<Guest>().gameObject.activeInHierarchy)
+                guestArr[i].GetComponent<Guest>().ChkMyPurposeLineUp(bg.transform);
         }
     }
 

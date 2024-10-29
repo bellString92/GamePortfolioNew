@@ -50,7 +50,7 @@ public class Clock : MonoBehaviour
 
     public void StartClock()
     {
-        cor = StartCoroutine(FlowClock(1.0f));
+        cor = StartCoroutine(FlowClock(5.0f));
     }
 
     IEnumerator FlowClock(float min)

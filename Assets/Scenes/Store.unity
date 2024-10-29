@@ -12680,6 +12680,37 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 8828628892651416278, guid: 715590dd7612f004881fdbf870a88751, type: 3}
   m_PrefabInstance: {fileID: 1453240344}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1423262963
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1423262964}
+  m_Layer: 0
+  m_Name: FoodBoxs
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1423262964
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1423262963}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.0009999871, y: 1.2658639, z: 9.985001}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1428159801
 GameObject:
   m_ObjectHideFlags: 0
@@ -20463,6 +20494,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2996275001183243466, guid: 0718c16c0e32efc4e9080a0c050cf03d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6961227613773842987, guid: 0718c16c0e32efc4e9080a0c050cf03d, type: 3}
       propertyPath: m_Name
       value: CashierMonitor
@@ -20550,6 +20585,10 @@ PrefabInstance:
       propertyPath: openStore
       value: 
       objectReference: {fileID: 1948965688}
+    - target: {fileID: 3157845483444679831, guid: fbb1150766a8db84c9374a7c0344bbee, type: 3}
+      propertyPath: foodBoxObj
+      value: 
+      objectReference: {fileID: 1423262964}
     - target: {fileID: 3157845483444679831, guid: fbb1150766a8db84c9374a7c0344bbee, type: 3}
       propertyPath: pricePopup
       value: 
@@ -20825,3 +20864,4 @@ SceneRoots:
   - {fileID: 1966363281}
   - {fileID: 1671477999}
   - {fileID: 2131917832}
+  - {fileID: 1423262964}

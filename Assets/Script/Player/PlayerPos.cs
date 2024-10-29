@@ -27,6 +27,8 @@ public class PlayerPos : MonoBehaviour
     public Transform endDayObj;
     public Information infoObj;
 
+    public Transform foodBoxObj;
+
     private void Awake()
     {
         PlayerPrefs.SetInt("playerPosition", (int)PlayerPosition.StoreNormal);
@@ -85,6 +87,7 @@ public class PlayerPos : MonoBehaviour
             playerComp.cashier = cashier;
             playerComp.endDayObj = endDayObj;
             playerComp.infoObj = infoObj;
+            playerComp.foodBoxObj = foodBoxObj;
         }
     }
 }

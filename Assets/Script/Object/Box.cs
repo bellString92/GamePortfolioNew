@@ -47,10 +47,10 @@ public class Box : MonoBehaviour
         transform.localScale = Vector3.one;
     }
 
-    public void OnPut()
+    public void OnPut(Transform parent)
     {
         transform.GetComponent<Rigidbody>().isKinematic = false;
-        transform.SetParent(null);
+        transform.SetParent(parent);
         Quaternion q = transform.localRotation;
         q.x = 0.0f; q.z = 0.0f;
         transform.localRotation = q;

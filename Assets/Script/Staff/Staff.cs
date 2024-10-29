@@ -155,7 +155,7 @@ public class Staff : AnimatorProperty
         }
     }
 
-    private void ResetStaff()
+    protected virtual void ResetStaff()
     {
         myActState = StaffActState.Idle;
         myWorkState = StaffWorkState.Start;

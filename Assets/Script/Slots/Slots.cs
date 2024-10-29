@@ -96,7 +96,10 @@ public class Slots : MonoBehaviour
                             t.GetComponentInChildren<Stuff>().myStuffDesc.price = price;
                         }
                     }
-                    s.GetComponent<Slots>().GetComponentInChildren<TMPro.TMP_Text>().text = Global.Comma(price) + "원";
+                    if (s.GetComponent<Slots>().GetComponentInChildren<TMPro.TMP_Text>(true).gameObject.activeInHierarchy)
+                        s.GetComponent<Slots>().GetComponentInChildren<TMPro.TMP_Text>().text = Global.Comma(price) + "원";
+
+                    // 물건이 없으면 다른 슬롯을 봐서 물건이 있다면 그 가격을 바꾸는 것으로 수정 필요
                 }
             }
         }

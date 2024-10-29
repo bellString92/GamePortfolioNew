@@ -73,6 +73,8 @@ public class Player : AnimatorProperty
     public bool onBed { get; set; } = false;
     public Information infoObj;
 
+    public Transform foodBoxObj;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -315,7 +317,7 @@ public class Player : AnimatorProperty
 
                         if (!cursorChk || cursorChk && (garbageChk || !slotChk))
                         {
-                            if (!garbageChk) dropObject.GetComponent<Box>().OnPut();
+                            if (!garbageChk) dropObject.GetComponent<Box>().OnPut(foodBoxObj);
                             dropObject.GetComponent<Collider>().enabled = true;
                             onBox = false;
                             foreach (GameObject obj in GameObject.FindGameObjectsWithTag("Table"))
