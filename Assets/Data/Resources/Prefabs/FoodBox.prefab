@@ -219,6 +219,7 @@ GameObject:
   - component: {fileID: 3104337234966758188}
   - component: {fileID: 6884303969781150210}
   - component: {fileID: 8799806894328987565}
+  - component: {fileID: -5275879101965006747}
   m_Layer: 9
   m_Name: FoodBox
   m_TagString: Box
@@ -356,6 +357,27 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 2
+--- !u!65 &-5275879101965006747
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2770002736433331190}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2, y: 5, z: 2}
+  m_Center: {x: -0.0013748407, y: 0.3272481, z: 0.0013750196}
 --- !u!1 &3301497490221527305
 GameObject:
   m_ObjectHideFlags: 0

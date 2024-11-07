@@ -25,6 +25,12 @@ public class StaffController : MonoBehaviour
     CashierStaff cashierStaff;
     LifterStaff lifterStaff;
 
+    public Transform boxPlace1;
+    public Transform boxPlace2;
+
+    public Transform baseObj;
+    public Transform garbageObj;
+
     private void Awake()
     {
         Instance = this;
@@ -87,7 +93,8 @@ public class StaffController : MonoBehaviour
 
     void CreateStaff(StaffType staffType)
     {
-        GameObject staff = ObjectPool.Instance.Instantiate<StaffType>(Resources.Load($"Prefabs/Staff/{staffType}") as GameObject, staffPos);
+        //GameObject staff = ObjectPool.Instance.Instantiate<StaffType>(Resources.Load($"Prefabs/Staff/{staffType}") as GameObject, staffPos);
+        GameObject staff = Instantiate(Resources.Load($"Prefabs/Staff/{staffType}") as GameObject, staffPos);
         staff.name = staffType.ToString();
         if (staffType.Equals(StaffType.Cashier))
         {
@@ -104,6 +111,10 @@ public class StaffController : MonoBehaviour
             lifterStaff.purpose = staffMovingPos.GetChild(1).GetChild(0).GetChild(0);
             lifterStaff.ChangeMyActState(StaffActState.Walk);
             lifterStaff.ChangeMyWorkState(StaffWorkState.Start);
+            lifterStaff.boxPlace1 = boxPlace1;
+            lifterStaff.boxPlace2 = boxPlace2;
+            lifterStaff.baseObj = baseObj;
+            lifterStaff.garbageObj = garbageObj;
         }
     }
 

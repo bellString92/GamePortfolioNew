@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -21,6 +22,11 @@ public class Box : MonoBehaviour
     {
         // юс╫ц
         // OnCreateBox(stuff);
+    }
+
+    public bool IsEmpty()
+    {
+        return stuffs.Count == 0;
     }
 
     public void OnCreateBox(StuffObject stuff)
@@ -47,6 +53,15 @@ public class Box : MonoBehaviour
         transform.localScale = Vector3.one;
     }
 
+    public void OnDrop(Transform parent)
+    {
+        transform.GetComponent<Rigidbody>().isKinematic = true;
+        transform.SetParent(parent);
+        transform.localPosition = new Vector3(0, 1f, 0.55f);
+        transform.localRotation = Quaternion.Euler(-10f, 0, 0);
+        transform.localScale = Vector3.one/2.0f;
+    }
+
     public void OnPut(Transform parent)
     {
         transform.GetComponent<Rigidbody>().isKinematic = false;
@@ -56,6 +71,17 @@ public class Box : MonoBehaviour
         transform.localRotation = q;
         transform.localScale = Vector3.one;
         transform.GetComponent<Rigidbody>().AddForce(_cam.transform.forward * 10.0f, ForceMode.Impulse);
+    }
+
+    public void OnPut(Transform parent, Staff staff)
+    {
+        transform.GetComponent<Rigidbody>().isKinematic = false;
+        transform.SetParent(parent);
+        Quaternion q = transform.localRotation;
+        q.x = 0.0f; q.z = 0.0f;
+        transform.localRotation = q;
+        transform.localScale = Vector3.one;
+        transform.GetComponent<Rigidbody>().AddForce(staff.transform.forward * 10.0f, ForceMode.Impulse);
     }
 
     public void OnDisplay()
@@ -78,5 +104,14 @@ public class Box : MonoBehaviour
     {
         if (int.TryParse(this.remain.text, out int remain))
             if (remain <= 0) Destroy(gameObject);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.GetComponent<LifterStaff>() != null && other.GetComponent<LifterStaff>().myWorkState.Equals(StaffWorkState.Work))
+        {
+            other.GetComponent<LifterStaff>().OnDrop(this);
+            
+        }
     }
 }

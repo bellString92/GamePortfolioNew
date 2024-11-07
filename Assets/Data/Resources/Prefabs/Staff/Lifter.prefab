@@ -2555,6 +2555,8 @@ GameObject:
   - component: {fileID: 8073528979235887850}
   - component: {fileID: 2804268124072870032}
   - component: {fileID: 4323003796308377709}
+  - component: {fileID: 3104632895457624226}
+  - component: {fileID: 3046056215798570563}
   m_Layer: 0
   m_Name: Lifter
   m_TagString: Untagged
@@ -2617,7 +2619,70 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myStaffType: 1
+  myActState: 0
+  myWorkState: 0
+  isLookRot: 0
+  isMovePos: 0
+  isPurposeRot: 0
+  onceChk: 0
   purpose: {fileID: 0}
+  boxPlace1: {fileID: 0}
+  boxPlace2: {fileID: 0}
+  takeBox: {fileID: 0}
+  displaySlots: {fileID: 0}
+  myLifterState: 0
+  baseObj: {fileID: 0}
+  garbageObj: {fileID: 0}
+--- !u!136 &3104632895457624226
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8881449726149197904}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.5, z: 0}
+--- !u!54 &3046056215798570563
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8881449726149197904}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 112
+  m_CollisionDetection: 0
 --- !u!1 &8949348339383317467
 GameObject:
   m_ObjectHideFlags: 0

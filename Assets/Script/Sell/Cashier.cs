@@ -11,7 +11,7 @@ public class Cashier : MonoBehaviour
     public CashierGuest cashierGuest;
     public List<StuffObject> menus = new List<StuffObject>();
     private int profitGold = 0;
-    int num = 1;
+    //int num = 1;
 
     public void AddStuff(Stuff stuff)
     {

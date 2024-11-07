@@ -14,6 +14,7 @@ public class Table : MonoBehaviour
     public Transform _base;
     public TableObject tableObject = TableObject.None;
     public StuffDesc myStuffDesc;
+    public Transform staffPos;
 
     public Camera myCam { get => _cam; set => _cam = value; }
     public Transform myBase { get => _base; set => _base = value; }

@@ -16,12 +16,12 @@ public class Staff : AnimatorProperty
 {
     public StaffType myStaffType;
 
-    protected StaffActState myActState;
-    protected StaffWorkState myWorkState;
-    private bool isLookRot = false;
-    private bool isMovePos = false;
-    private bool isPurposeRot = false;
-    private bool onceChk = false;
+    public StaffActState myActState;
+    public StaffWorkState myWorkState;
+    public bool isLookRot = false;
+    public bool isMovePos = false;
+    public bool isPurposeRot = false;
+    public bool onceChk = false;
     public Transform purpose;
 
     private float rotSpeed = 5.0f;
@@ -107,13 +107,15 @@ public class Staff : AnimatorProperty
         ChangeMyWorkState(StaffWorkState.End);
     }
 
-    private void Update()
+    protected void Update()
     {
         WorkStateProcess();
 
         if (isLookRot)
         {
-            Quaternion targetRotation = Quaternion.LookRotation(purpose.position - transform.position);
+            Vector3 purposePos = purpose.position - transform.position;
+            purposePos.y = 0f;
+            Quaternion targetRotation = Quaternion.LookRotation(purposePos);
 
             if (Quaternion.Angle(transform.rotation, targetRotation) > 1.0f)
             {
@@ -128,9 +130,12 @@ public class Staff : AnimatorProperty
         }
         else if (isMovePos)
         {
+
             if (Vector3.Distance(transform.position, purpose.position) > 0.1f)
             {
-                transform.position = Vector3.MoveTowards(transform.position, purpose.position, moveSpeed * Time.deltaTime);
+
+                Vector3 newPurpose = new Vector3(purpose.position.x, 0, purpose.position.z);
+                transform.position = Vector3.MoveTowards(transform.position, newPurpose, moveSpeed * Time.deltaTime);
             }
             else
             {
@@ -153,6 +158,7 @@ public class Staff : AnimatorProperty
                 onceChk = true;
             }
         }
+        
     }
 
     protected virtual void ResetStaff()
